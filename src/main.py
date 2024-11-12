@@ -19,7 +19,6 @@ from PyQt6.QtCore import Qt
 
 
 class BaseScreen(QWidget):
-    """Основной класс для экранов приложения"""
 
     def __init__(self, parent):
         super().__init__()
