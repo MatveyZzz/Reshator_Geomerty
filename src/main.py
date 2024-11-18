@@ -66,17 +66,18 @@ class InputScreen(BaseScreen):
         back_button.clicked.connect(self.go_back)
         self.layout.addWidget(back_button)
         self.setLayout(self.layout)
+        self.param_label = QLabel("Введите радиус:")
 
     def set_parameters(self, figura, deistvie):
         self.figura = figura
         self.deistvie = deistvie
         self.param_input.clear()
         if figura == "Окружность":
-            self.param_label = QLabel("Введите радиус:")
+            self.param_label
         elif figura == "Квадрат":
-            self.param_label = QLabel("Введите сторону:")
+            self.param_label.setText("Введите сторону:")
         elif figura == "Треугольник":
-            self.param_label = QLabel("Введите длину стороны:")
+            self.param_label.setText("Введите длину стороны:")
         self.layout.insertWidget(0, self.param_label)
 
     def calculate_result(self):
