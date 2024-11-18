@@ -34,7 +34,7 @@ class ShapeSelectionScreen(BaseScreen):
         layout = QVBoxLayout()
         layout.addWidget(QLabel("Выберите фигуру"))
         self.comboFigura = QComboBox()
-        self.comboFigura.addItems(["Окружность", "Квадрат", "Треугольник"])
+        self.comboFigura.addItems(["Окружность", "Квадрат"])
         layout.addWidget(self.comboFigura)
         layout.addWidget(QLabel("Выберите действие"))
         self.comboDeistvie = QComboBox()
@@ -137,11 +137,11 @@ class ResultScreen(BaseScreen):
         pen = QPen(QColor(0, 100, 250), 3, Qt.PenStyle.SolidLine)
         painter.setPen(pen)
         if self.figura == "Окружность":
-            radius = int(self.param * 10)
-            painter.drawEllipse(100, 150, radius, radius)
+            radius = int(self.param)
+            painter.drawEllipse(130, 10, radius, radius)
         elif self.figura == "Квадрат":
-            side = int(self.param * 10)
-            painter.drawRect(100, 150, side, side)
+            side = int(self.param)
+            painter.drawRect(110, 15, side, side)
 
 
 class MainApp(QMainWindow):
@@ -153,6 +153,7 @@ class MainApp(QMainWindow):
         self.selection_screen = ShapeSelectionScreen(self)
         self.input_screen = InputScreen(self)
         self.result_screen = ResultScreen(self)
+        self.k = ResultScreen(self)
         self.central_widget.addWidget(self.selection_screen)
         self.central_widget.addWidget(self.input_screen)
         self.central_widget.addWidget(self.result_screen)
@@ -167,6 +168,7 @@ class MainApp(QMainWindow):
     def show_result_screen(self, result, figura, param):
         self.result_screen.set_result(result, figura, param)
         self.central_widget.setCurrentWidget(self.result_screen)
+        self.k.paintEvent(self)
 
 
 if __name__ == "__main__":
