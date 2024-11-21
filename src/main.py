@@ -1,4 +1,5 @@
 import sys
+import math
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -19,7 +20,6 @@ from PyQt6.QtCore import Qt
 
 
 class BaseScreen(QWidget):
-
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -84,9 +84,9 @@ class InputScreen(BaseScreen):
         try:
             value = float(self.param_input.text())
             if self.figura == "Окружность" and self.deistvie == "Длина":
-                result = 2 * 3.1415 * value
+                result = 2 * math.pi * value
             elif self.figura == "Окружность" and self.deistvie == "Площадь":
-                result = 3.1415 * (value**2)
+                result = math.pi * (value**2)
             elif self.figura == "Квадрат" and self.deistvie == "Площадь":
                 result = value**2
             else:
@@ -114,7 +114,10 @@ class ResultScreen(BaseScreen):
         self.setLayout(layout)
 
     def set_result(self, result, figura, param):
-        self.result_label.setText(f"Результат: {result}")
+        if result == str():
+            self.result_label.setText(f"Результат: {round(result, 2)}")
+        else:
+            self.result_label.setText(f"Результат: {round(result, 2)}")
         self.figura = figura
         self.param = param
         self.update()
