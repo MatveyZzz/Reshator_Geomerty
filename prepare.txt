@@ -1,3 +1,0 @@
-main.py - главный файл с кодом
-input.py - файл с class InputScreen
-resul.ry - файл с class ResultScreen
